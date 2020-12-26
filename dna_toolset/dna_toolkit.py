@@ -7,6 +7,11 @@ import sys
 from os import path
 sys.path.append(path.dirname(path.dirname(path.dirname(path.realpath(__file__)))))
 
+# NOT SURE HOW TO SUIT BOTH SCENARIOS BELOW (path problem...);
+# ============================================================
+# 1. Needed for problem_2.py
+# from dna_toolset.structures import *
+# 2. Needed for main.py
 from structures import *
 
 import random

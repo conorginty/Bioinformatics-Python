@@ -1,11 +1,13 @@
 # main method for testing functions
 
-# import sys
-# from os import path
-# sys.path.append(path.dirname(path.dirname(path.dirname(path.realpath(__file__)))))
+import sys
+from os import path
+sys.path.append(path.dirname(path.dirname(path.dirname(path.realpath(__file__)))))
 
 # from dna_toolset.dna_toolkit import * # REMOVES UNDERLINE ISSUE BUT DOESN'T WORK!
+print("===Before===")
 from dna_toolkit import * # LOCAL PATH WORKS FINE BUT IDE THINKS IT'S PROBLEMATIC
+print("===After===")
 
 # ===== Part 1 =====
 
