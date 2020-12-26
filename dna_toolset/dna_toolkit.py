@@ -80,3 +80,44 @@ def nucleotide_percentage_frequency(dna_sequence):
         nucleotide_freqs[nucleotide_key] = round(nucleotide_counts[nucleotide_key] / total_count * 100, 2)
     
     return nucleotide_freqs
+
+# ===== Part 2 =====
+
+def transcription(dna_sequence):
+    '''Replace any occurences of Thymine with Uracil then return the sequence'''
+    # DNA -> mRNA
+    return dna_sequence.replace("T", "U")
+
+def reverse_complement(dna_sequence):
+    '''returns the complement sequence to a given DNA strand
+    A - T (2 H Bonds)
+    C - G (3 H Bonds)
+    '''
+    
+    # === Version 1 ===
+    # # Get the complement for each Nucleotide
+    # complement = ''.join(dna_reverse_complement[nucleotide] for nucleotide in dna_sequence)
+    
+    # # Reverse the Complement strand
+    # reverse_complement = complement[::-1]
+    
+    # return reverse_complement
+
+    # === Version 2: Faster, More Pythonic Approach ===
+    # VERY specific for Python
+    mapping = str.maketrans("ATCG", "TAGC")
+    return dna_sequence.translate(mapping)[::-1]
+
+def show_full_sequence(dna_sequence, reverse=True):
+    '''Creates Representation of a DNA based one one of the strands'''
+    
+    connections = "|" * len(dna_sequence)
+    
+    if reverse:
+        complement_opposite_direction = reverse_complement(dna_sequence)[::-1]
+    else:
+        complement_opposite_direction = reverse_complement(dna_sequence)
+    
+    print(f"5' {dna_sequence} 3'")
+    print("  ", connections)
+    print(f"3' {complement_opposite_direction} 5'")

@@ -29,3 +29,12 @@ print(nucleotide_percentage_frequency(random_DNA_strand)) # {'A': 10.0, 'C': 10.
 
 random_DNA_strand_2 = generate_random_DNA_string(1000)
 print(nucleotide_percentage_frequency(random_DNA_strand_2))
+
+# ===== Part 2 =====
+
+print(transcription(random_DNA_strand))
+
+print(random_DNA_strand)
+print(reverse_complement(random_DNA_strand))
+
+show_full_sequence(random_DNA_strand)
