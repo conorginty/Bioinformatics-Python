@@ -19,6 +19,9 @@ import sys
 from os import path
 sys.path.append(path.dirname(path.dirname(path.dirname(path.realpath(__file__)))))
 
+path_of_interest = path.dirname(path.dirname(path.dirname(path.realpath(__file__))))
+print(path_of_interest)
+
 from dna_toolset.dna_toolkit import transcription
 
 print(transcription("GATGGAACTTGACTACGTAAATT")) # GAUGGAACUUGACUACGUAAAUU

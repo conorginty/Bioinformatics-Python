@@ -2,11 +2,14 @@
 
 import sys
 from os import path
-sys.path.append(path.dirname(path.dirname(path.dirname(path.realpath(__file__)))))
+sys.path.append(path.dirname(path.dirname(path.realpath(__file__))))
 
-# from dna_toolset.dna_toolkit import * # REMOVES UNDERLINE ISSUE BUT DOESN'T WORK!
+# path_of_interest = path.dirname(path.dirname(path.realpath(__file__)))
+# print(path_of_interest)
+
 print("===Before===")
-from dna_toolkit import * # LOCAL PATH WORKS FINE BUT IDE THINKS IT'S PROBLEMATIC
+from dna_toolset.dna_toolkit import * # REMOVES UNDERLINE ISSUE BUT DOESN'T WORK!
+# from dna_toolkit import * # LOCAL PATH WORKS FINE BUT IDE THINKS IT'S PROBLEMATIC
 print("===After===")
 
 # ===== Part 1 =====
