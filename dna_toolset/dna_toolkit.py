@@ -126,3 +126,20 @@ def show_full_sequence(dna_sequence, reverse=True):
     print(f"5' {dna_sequence} 3'")
     print("  ", connections)
     print(f"3' {complement_opposite_direction} 5'")
+
+# ===== Part 3 =====
+
+def gc_content(dna_sequence):
+    '''Returns the GC content in a nucleic acid sequence (either DNA or RNA)'''
+    return round( (dna_sequence.count("C") + dna_sequence.count("G")) / len(dna_sequence) * 100)
+
+def gc_content_subsection(dna_sequence, k):
+    '''Returns the GC content in a nucleic acid (either DNA or RNA) sequence in subsections of length k (our window)'''
+
+    result = []
+
+    for i in range(0, len(dna_sequence)-k+1, k):
+        sub_sequence = dna_sequence[i: i+k]
+        # calculate the GC content of the window
+        result.append(gc_content(sub_sequence))
+    return result

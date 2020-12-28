@@ -43,3 +43,17 @@ print(random_DNA_strand)
 print(reverse_complement(random_DNA_strand))
 
 show_full_sequence(random_DNA_strand)
+
+# ===== Part 3 =====
+
+test_DNA_strand = "ATTC"
+
+print(f"{gc_content(test_DNA_strand)}%")
+
+test_DNA_strand = "ATTCG"
+
+print(f"{gc_content(test_DNA_strand)}%")
+
+random_DNA_strand_3 = generate_random_DNA_string(50)
+print(random_DNA_strand_3)
+print(gc_content_subsection(random_DNA_strand_3, 5))
