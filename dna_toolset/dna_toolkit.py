@@ -143,3 +143,30 @@ def gc_content_subsection(dna_sequence, k):
         # calculate the GC content of the window
         result.append(gc_content(sub_sequence))
     return result
+
+# ===== Part 4 =====
+
+# Generate a DNA Codon Table
+def translate_sequence(dna_sequence, init_pos=0):
+    '''Translate a DNA Sequence into an Amino Acid Sequence'''
+    # init_pos is used to generate reading frames
+    # Read the sequence 3 nucleotides at a time, jumping 3 nucleotides each read
+    return [dna_codons[dna_sequence[pos:pos+3]] for pos in range(init_pos, len(dna_sequence)-2, 3)]
+
+def codon_usage(dna_sequence, amino_acid):
+    '''Provides the frequency of each codon encoding a given Amino Acid in a DNA Sequence'''
+    
+    # If our sequence contains an AA of interest, append it to a list
+    temp_list = []
+    for i in range(0, len(dna_sequence)-2, 3):
+        current_triplet = dna_sequence[i: i+3]
+        if dna_codons[current_triplet] == amino_acid:
+            temp_list.append(current_triplet)
+    
+    # Calculate the frequency of a given codon that coded for the AA of interest 
+    # (e.g. value of 1.0 means that all occurrences of the AA were coded by the exact same triplet every time)
+    freq_dict = dict(collections.Counter(temp_list))
+    total_weight = sum(freq_dict.values())
+    for sequence in freq_dict:
+        freq_dict[sequence] = round(freq_dict[sequence] / total_weight, 2)
+    return freq_dict

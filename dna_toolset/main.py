@@ -7,12 +7,13 @@ sys.path.append(path.dirname(path.dirname(path.realpath(__file__))))
 # path_of_interest = path.dirname(path.dirname(path.realpath(__file__)))
 # print(path_of_interest)
 
-print("===Before===")
 from dna_toolset.dna_toolkit import * # REMOVES UNDERLINE ISSUE BUT DOESN'T WORK!
 # from dna_toolkit import * # LOCAL PATH WORKS FINE BUT IDE THINKS IT'S PROBLEMATIC
-print("===After===")
+
+from dna_toolset.decorate import *
 
 # ===== Part 1 =====
+part_header("Part 1")
 
 valid_DNA_strand_1 = "ATTTCGT"
 print(validate_sequence(valid_DNA_strand_1)) # True
@@ -36,6 +37,7 @@ random_DNA_strand_2 = generate_random_DNA_string(1000)
 print(nucleotide_percentage_frequency(random_DNA_strand_2))
 
 # ===== Part 2 =====
+part_header("Part 2")
 
 print(transcription(random_DNA_strand))
 
@@ -45,6 +47,7 @@ print(reverse_complement(random_DNA_strand))
 show_full_sequence(random_DNA_strand)
 
 # ===== Part 3 =====
+part_header("Part 3")
 
 test_DNA_strand = "ATTC"
 
@@ -57,3 +60,14 @@ print(f"{gc_content(test_DNA_strand)}%")
 random_DNA_strand_3 = generate_random_DNA_string(50)
 print(random_DNA_strand_3)
 print(gc_content_subsection(random_DNA_strand_3, 5))
+
+# ===== Part 4 =====
+part_header("Part 4")
+
+random_DNA_strand_4 = generate_random_DNA_string(21)
+print(random_DNA_strand_4)
+print(translate_sequence(random_DNA_strand_4))
+
+sample_amino_acid_list = ["C", "S", "F", "V", "_", "A", "R"]
+for aa in sample_amino_acid_list:
+    print(f'Currently checking for {aa}:\n {codon_usage(random_DNA_strand_4, aa)}')
