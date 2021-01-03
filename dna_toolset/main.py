@@ -71,3 +71,10 @@ print(translate_sequence(random_DNA_strand_4))
 sample_amino_acid_list = ["C", "S", "F", "V", "_", "A", "R"]
 for aa in sample_amino_acid_list:
     print(f'Currently checking for {aa}:\n {codon_usage(random_DNA_strand_4, aa)}')
+
+# ===== Part 5 =====
+part_header("Part 5")
+
+print(random_DNA_strand_4)
+for frame in generate_reading_frames(random_DNA_strand_4):
+    print(frame)

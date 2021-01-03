@@ -155,18 +155,37 @@ def translate_sequence(dna_sequence, init_pos=0):
 
 def codon_usage(dna_sequence, amino_acid):
     '''Provides the frequency of each codon encoding a given Amino Acid in a DNA Sequence'''
-    
+
     # If our sequence contains an AA of interest, append it to a list
     temp_list = []
     for i in range(0, len(dna_sequence)-2, 3):
         current_triplet = dna_sequence[i: i+3]
         if dna_codons[current_triplet] == amino_acid:
             temp_list.append(current_triplet)
-    
-    # Calculate the frequency of a given codon that coded for the AA of interest 
+
+    # Calculate the frequency of a given codon that coded for the AA of interest
     # (e.g. value of 1.0 means that all occurrences of the AA were coded by the exact same triplet every time)
     freq_dict = dict(collections.Counter(temp_list))
     total_weight = sum(freq_dict.values())
     for sequence in freq_dict:
         freq_dict[sequence] = round(freq_dict[sequence] / total_weight, 2)
     return freq_dict
+
+# ===== Part 5 =====
+
+def generate_reading_frames(dna_sequence):
+    '''Generate the 6 reading frames of a DNA sequence, including the Reverse Complement'''
+
+    reading_frames = [] # Will store our 6 reading frames
+
+    # 1st translate DNA seq then append to our frames
+    # Append 1st 3 reading frames (strand itself)
+    for i in range(3):
+        translated_sequence = translate_sequence(dna_sequence, i)
+        reading_frames.append(translated_sequence)
+
+    # Now append 2nd 3 reading frames (from complement strand)
+    for i in range(3):
+        translated_complement = translate_sequence(reverse_complement(dna_sequence), i)
+        reading_frames.append(translated_complement)
+    return reading_frames
