@@ -78,3 +78,9 @@ part_header("Part 5")
 print(random_DNA_strand_4)
 for frame in generate_reading_frames(random_DNA_strand_4):
     print(frame)
+
+# ===== Part 6 =====
+random_DNA_strand_5 = generate_random_DNA_string(198)
+first_frame = generate_reading_frames(random_DNA_strand_5)[0]
+print("first_frame", first_frame)
+print(search_proteins_in_reading_frame(first_frame))

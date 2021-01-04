@@ -189,3 +189,30 @@ def generate_reading_frames(dna_sequence):
         translated_complement = translate_sequence(reverse_complement(dna_sequence), i)
         reading_frames.append(translated_complement)
     return reading_frames
+
+# ===== Part 6 =====
+
+def search_proteins_in_reading_frame(aa_sequence):
+    '''Computes all possible proteins in an AA sequence and returns a list of possible proteins'''
+
+    current_protein = [] # Accumulates our current protein (made up of AAs from M -> _)
+    proteins = [] # # Accumulates all proteins generated
+
+    for aa in aa_sequence:
+        if aa == "_":
+            # STOP codon - so stop appending list of proteins
+            if current_protein: # If the current_protein list is NOT empty
+                # For loop responsible for getting nested proteins (e.g. MAAMCG_ would produce: MAAMCG and MCG)
+                for prot in current_protein:
+                    proteins.append(prot)
+                current_protein = []
+        else:
+            if aa == "M":
+                # if START codon (M) - then start appending list of proteins
+                current_protein.append("")
+            # If the length of the current protein is > 0, build the protein 
+            # Effectively gets skipped unless we've encountered a M already (so the length of current_protein will be at least 1 ("", "M", "MR" etc))
+            for i in range(len(current_protein)):
+                current_protein[i] += aa
+    return proteins
+
