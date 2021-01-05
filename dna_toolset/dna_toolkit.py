@@ -216,3 +216,29 @@ def search_proteins_in_reading_frame(aa_sequence):
                 current_protein[i] += aa
     return proteins
 
+# ===== Part 7 =====
+
+# 1. Generate all reading frames
+# 2. Extract all proteins from the reading frames
+# 3. Return a list of sorted/unsorted proteins
+def read_all_proteins_from_orfs(sequence, start_reading_pos=0, end_read_pos=0, ordered=False):
+    '''Compute all possible proteins for all open reading frames'''
+    '''Protein Search DB at: {link}'''
+    '''API can be used to pull protein info'''
+    if end_read_pos > start_reading_pos:
+        reading_frames = generate_reading_frames(sequence[start_reading_pos: end_read_pos])
+    else:
+        reading_frames = generate_reading_frames(sequence)
+    
+    # Handles protein generation
+    results = []
+    for rf in reading_frames:
+        proteins = search_proteins_in_reading_frame(rf)
+        for prot in proteins:
+            results.append(prot)
+    
+    # If ordered, then sort based on length in descending order (longest to shortest)
+    if ordered:
+        results = sorted(results, key=len, reverse=True)
+    
+    return results

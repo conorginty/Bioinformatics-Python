@@ -80,7 +80,20 @@ for frame in generate_reading_frames(random_DNA_strand_4):
     print(frame)
 
 # ===== Part 6 =====
+part_header("Part 6")
+
 random_DNA_strand_5 = generate_random_DNA_string(198)
 first_frame = generate_reading_frames(random_DNA_strand_5)[0]
 print("first_frame", first_frame)
 print(search_proteins_in_reading_frame(first_frame))
+
+# ===== Part 7 =====
+part_header("Part 7")
+
+for protein in read_all_proteins_from_orfs(random_DNA_strand_5, 0, 0, True):
+    print(protein)
+print("---")
+
+# Human Insulin
+for protein in read_all_proteins_from_orfs(human_insulin, 0, 0, True):
+    print(protein)
